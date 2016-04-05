@@ -37,6 +37,9 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="Alumno.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="Ticket.cs" />
     <Page Include="frmAlumno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -76,6 +80,7 @@
     <Compile Include="frmAlumno.xaml.cs">
       <DependentUpon>frmAlumno.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Listados.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

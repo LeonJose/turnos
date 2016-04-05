@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace WpfApplication1
 {
@@ -20,11 +21,16 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         public bool matricula = true;
+        public CultureInfo lenguaje = new CultureInfo("es-ES");
+
         public MainWindow()
         {
             InitializeComponent();
             headerlogo();
+            txtNombre.Focus();
         }
         private void headerlogo()
         {
@@ -33,59 +39,80 @@ namespace WpfApplication1
             _bi.BeginInit();
             _bi.UriSource = new System.Uri("pack://application:,,,/Recursos/imagenes/1.png");
             _bi.EndInit();
-
             _image.Source = _bi;
-
             ImageBrush _ib = new ImageBrush();
             _ib.ImageSource = _bi;
-
             rt_imagen.Fill = _ib;
         }
 
         //boton cancelar
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btnCancelar_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void btnRegistro_Click_2(object sender, RoutedEventArgs e)
         {
             Espera es = new Espera();
-            if (matricula){
+            if (matricula)
+            {
                 Alumno a = new Alumno(txtNombre.Text);
-                if(a.Nombre!="")
+                if (a.Nombre != "")
                 {
+                    string s = Listados.ObtenerNumero().ToString();
+                    string num = (lenguaje.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek)).Substring(0, 2).ToUpper() + "" + s.PadLeft(4, '0').ToString();
                     es.Nombre = a.Nombre + " " + a.Apaterno + " " + a.Amaterno;
-                    //es.Numero = a.
+                    es.Numero = num;
+                    es.Fecha = DateTime.Now;
                     es.HoraLlegada = DateTime.Now;
                     es.HoraAtencion = DateTime.Now;
-
-                    //hora.toString("yyyy-MM-dd"); ("hh:mm:ss")
-                
-                   /* if(e.Agregar)
+                    es.Matricula = a.Matricula;
+                    if (es.AgregarEspera())
                     {
-
-                    }*/
+                        es.GenerarTicket();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo registrar la espera. Intentalo nuevamente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo registrar");
+                    MessageBox.Show("No es una matricula valida");
                 }
             }
             else
             {
+                if (txtNombre.Text != "")
+                {
+                    string s = Listados.ObtenerNumero().ToString();
+                    string num = (lenguaje.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek)).Substring(0, 2).ToUpper() + "" + s.PadLeft(4, '0').ToString();
                     es.Nombre = txtNombre.Text;
-                    //es.Numero = 
+                    es.Numero = num;
+                    es.Fecha = DateTime.Now;
                     es.HoraLlegada = DateTime.Now;
                     es.HoraAtencion = DateTime.Now;
+                    if (es.AgregarEspera())
+                    {
+                        es.GenerarTicket();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo registrar la espera. Intentalo nuevamente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
-
-        }
-
-        private void cli(object sender, MouseEventArgs e)
-        {
-            lbltitulo.Content = "Ingrese su nombre";
-            matricula = false;
         }
     }
 }
+
+
+
+
+
+
+
+/* if(e.Agregar)
+ {
+
+ }*/

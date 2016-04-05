@@ -13,7 +13,7 @@ using System.Configuration;
     {
         // string de conexion
         /*private static string stringconexion = System.Configuration.ConfigurationSettings.AppSettings["cadenaConexion"].ConnectionString; /* ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString;*/
-        private static string stringconexion = ConfigurationManager.ConnectionStrings["WpfApplication1.Properties.Settings.SisProConnectionString"].ConnectionString;
+        private static string stringconexion = ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString;
 
         // objeto de conexion
         private static SqlConnection conexion;

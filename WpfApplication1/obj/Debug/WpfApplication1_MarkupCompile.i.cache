@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Jose Luis\Documents\Visual Studio 2012\Projects\WpfApplication1\WpfApplication1\obj\Debug\
+C:\sispro\turnos\WpfApplication1\obj\Debug\
 WpfApplication1
 none
 false
 DEBUG;TRACE
-C:\Users\Jose Luis\Documents\Visual Studio 2012\Projects\WpfApplication1\WpfApplication1\App.xaml
+C:\sispro\turnos\WpfApplication1\App.xaml
 3164144952
 
-14-1678549468
-13-1093145242
+16242506741
+161440315225
 frmAlumno.xaml;Login.xaml;MainWindow.xaml;
 
-False
+True
 
